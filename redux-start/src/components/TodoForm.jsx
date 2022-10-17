@@ -1,15 +1,11 @@
 import { useRef } from "react";
-import useReduxDispatch from "../hooks/useReduxDispatch";
-import { addTodo } from "../redux/actions";
 
-const TodoForm = () => {
+const TodoForm = ({ add }) => {
   const inputRef = useRef();
-  const dispatch = useReduxDispatch();
-  const input = document.querySelector("input");
   function submit(e) {
     e.preventDefault();
-    dispatch(addTodo(inputRef.current.value));
-    input.value = "";
+    add(inputRef.current.value);
+    inputRef.current.value = "";
   }
   return (
     <form onSubmit={submit}>
@@ -18,4 +14,5 @@ const TodoForm = () => {
     </form>
   );
 };
+
 export default TodoForm;
